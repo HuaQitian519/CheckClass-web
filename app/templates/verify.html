@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}邮箱验证 - 中传海南选课红黑榜{% endblock %}
+{% block content %}
+<h1 class="mb-4">邮箱验证</h1>
+<p>我们已向您注册的邮箱发送了一封带有验证码的邮件，请查收并在下方输入验证码。</p>
+<form method="post">
+    {{ form.csrf_token }}
+    <div class="mb-3">
+        {{ form.code.label(class="form-label") }}
+        {{ form.code(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}

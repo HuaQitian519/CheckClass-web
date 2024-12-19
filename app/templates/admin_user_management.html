@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %}用户管理 - 中传海南选课红黑榜{% endblock %}
+{% block content %}
+<h1 class="mb-4">用户管理</h1>
+{% if users %}
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>邮箱</th>
+            <th>管理员</th>
+            <th>封禁</th>
+            <th>验证</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for u in users %}
+        <tr>
+            <td>{{ u.id }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ '是' if u.is_admin else '否' }}</td>
+            <td>{{ '是' if u.is_banned else '否' }}</td>
+            <td>{{ '是' if u.verified else '否' }}</td>
+            <td>
+                {% if not u.is_banned %}
+                    <a href="{{ url_for('admin.ban_user', user_id=u.id) }}" class="btn btn-sm btn-danger">封禁</a>
+                {% else %}
+                    <span class="text-muted">已封禁</span>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>暂无用户。</p>
+{% endif %}
+<a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary">返回后台首页</a>
+{% endblock %}

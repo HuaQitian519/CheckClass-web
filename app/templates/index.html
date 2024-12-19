@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}课程列表 - 中传海南选课红黑榜{% endblock %}
+{% block content %}
+<h1 class="mb-4">课程列表</h1>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for data in courses %}
+    <div class="col">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ data.course.name }} - {{ data.course.teacher }}</h5>
+                <p class="card-text mb-2">
+                    <strong>签到：</strong> {{ data.check_in }}
+                </p>
+                <p class="card-text mb-2">
+                    <strong>考核方式：</strong> {{ data.test_type }}
+                </p>
+                <p class="card-text mb-2">
+                    <strong>给分情况：</strong> {{ data.grade_distribution }} |
+                    <strong>作业量：</strong> {{ data.workload }} |
+                    <strong>授课质量：</strong> {{ data.teaching_quality }}
+                </p>
+                <a href="{{ url_for('course.course_detail', course_id=data.course.id) }}" class="btn btn-primary btn-sm">
+                    查看详情
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

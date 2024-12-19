@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}登录 - 中传海南选课红黑榜{% endblock %}
+{% block content %}
+<h1 class="mb-4">登录</h1>
+<form method="post">
+    {{ form.csrf_token }}
+    <div class="mb-3">
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.password.label(class="form-label") }}
+        {{ form.password(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-success") }}
+</form>
+{% endblock %}

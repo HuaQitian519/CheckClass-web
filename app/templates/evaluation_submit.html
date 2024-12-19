@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}评价{{ course.name }} - 中传海南选课红黑榜{% endblock %}
+{% block content %}
+<h1 class="mb-4">评价：{{ course.name }} - {{ course.teacher }}</h1>
+<form method="post">
+    {{ form.csrf_token }}
+    <div class="form-check mb-3">
+        {{ form.recommended(class="form-check-input") }}
+        {{ form.recommended.label(class="form-check-label") }}
+    </div>
+    <div class="form-check mb-3">
+        {{ form.check_in(class="form-check-input") }}
+        {{ form.check_in.label(class="form-check-label") }}
+    </div>
+    <div class="mb-3">
+        {{ form.test_type.label(class="form-label") }}
+        {{ form.test_type(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.grade_distribution.label(class="form-label") }}
+        {{ form.grade_distribution(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.workload.label(class="form-label") }}
+        {{ form.workload(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.teaching_quality.label(class="form-label") }}
+        {{ form.teaching_quality(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.comment.label(class="form-label") }}
+        {{ form.comment(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-success") }}
+</form>
+{% endblock %}

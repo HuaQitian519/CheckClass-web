@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}提交课程 - 中传海南选课红黑榜{% endblock %}
+{% block content %}
+<h1 class="mb-4">提交新课程</h1>
+<form method="post">
+    {{ form.csrf_token }}
+    <div class="mb-3">
+        {{ form.name.label(class="form-label") }}
+        {{ form.name(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.teacher.label(class="form-label") }}
+        {{ form.teacher(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}课程搜索 - 中传海南选课红黑榜{% endblock %}
+{% block content %}
+<h1 class="mb-4">搜索结果: "{{ q }}"</h1>
+{% if courses %}
+<div class="list-group">
+    {% for c in courses %}
+    <a href="{{ url_for('course.course_detail', course_id=c.id) }}" class="list-group-item list-group-item-action">
+        {{ c.name }} - {{ c.teacher }}
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<p>未找到匹配的课程。</p>
+{% endif %}
+{% endblock %}

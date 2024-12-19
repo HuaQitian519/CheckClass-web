@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}管理员后台 - 中传海南选课红黑榜{% endblock %}
+{% block content %}
+<h1 class="mb-4">管理员后台</h1>
+<div class="row g-4">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">待审核课程</h5>
+                <p class="card-text">{{ pending_courses }} 条</p>
+                <a href="{{ url_for('admin.review_courses') }}" class="btn btn-primary">查看待审核课程</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">待审核评价</h5>
+                <p class="card-text">{{ pending_evals }} 条</p>
+                <a href="{{ url_for('admin.review_evaluations') }}" class="btn btn-secondary">查看待审核评价</a>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="{{ url_for('admin.manage_users') }}" class="btn btn-link mt-4">用户管理</a>用户管理</a>
+{% endblock %}

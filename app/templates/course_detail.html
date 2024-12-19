@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %}{{ course.name }}详情 - 中传海南选课红黑榜{% endblock %}
+{% block content %}
+<h1 class="mb-4">{{ course.name }} - {{ course.teacher }}</h1>
+
+<a href="{{ url_for('course.evaluate', course_id=course.id) }}" class="btn btn-secondary mb-3">提交评价</a>
+
+{% if evaluations %}
+<div class="row">
+    {% for eval in evaluations %}
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title text-primary">{{ eval.recommended }}</h5>
+                <p class="card-text mb-1">
+                    <strong>签到：</strong> {{ eval.check_in }}
+                </p>
+                <p class="card-text mb-1">
+                    <strong>考核方式：</strong> {{ eval.test_type }}
+                </p>
+                <p class="card-text mb-1">
+                    <strong>给分情况：</strong> {{ eval.grade_distribution }} |
+                    <strong>作业量：</strong> {{ eval.workload }} |
+                    <strong>授课质量：</strong> {{ eval.teaching_quality }}
+                </p>
+                <p class="card-text">
+                    <strong>评论：</strong> {{ eval.comment }}
+                </p>
+                <p class="card-text text-muted small mb-0">
+                    提交时间：{{ eval.timestamp }}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>暂无评价。</p>
+{% endif %}
+{% endblock %}
